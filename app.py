@@ -9,7 +9,6 @@ import psycopg2
 DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 cur = conn.cursor()
-cur.execute("INSERT INTO bot_users (username) VALUES ('AAA')")
 
 app = Flask(__name__)
 
@@ -61,6 +60,7 @@ def verify_fb_token(token_sent):
 def get_message():
     sample_responses = ["Ахренеть!!", "Работает!", "Ничесе!!", "Воу воу воу полегче!"]
     # return selected item to the user
+    cur.execute("INSERT INTO bot_users (username) VALUES ('AAA')")
     return random.choice(sample_responses)
  
 #uses PyMessenger to send response to user
