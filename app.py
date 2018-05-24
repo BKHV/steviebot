@@ -4,25 +4,22 @@ import random
 from flask import Flask, request
 from pymessenger.bot import Bot
 
+#import pymysql.cursors
 
-import pymysql.cursors
+#connection = pymysql.connect(host='mysql100.1gb.ru',
+#                             user='gb_bkhv',
+#                             password='957c3877sg',
+#                             db='gb_bkhv',
+#                             charset='utf8mb4',
+#                             cursorclass=pymysql.cursors.DictCursor)
 
-# Connect to the database
-connection = pymysql.connect(host='mysql100.1gb.ru',
-                             user='gb_bkhv',
-                             password='957c3877sg',
-                             db='gb_bkhv',
-                             charset='utf8mb4',
-                             cursorclass=pymysql.cursors.DictCursor)
-
-try:
-    with connection.cursor() as cursor:
-        # Create a new record
-        sql = "INSERT INTO `test` (`test`) VALUES (%s)"
-        cursor.execute(sql, ('w'))
-    connection.commit()
-finally:
-    connection.close()
+#try:
+#    with connection.cursor() as cursor:
+#        sql = "INSERT INTO `test` (`test`) VALUES (%s)"
+#        cursor.execute(sql, ('w'))
+#    connection.commit()
+#finally:
+#    connection.close()
 
     
 app = Flask(__name__)
