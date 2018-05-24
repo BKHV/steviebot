@@ -4,7 +4,7 @@ import random
 from flask import Flask, request
 from pymessenger.bot import Bot
 
-#import pymysql.cursors
+import pymysql.cursors
 
 #connection = pymysql.connect(host='mysql100.1gb.ru',
 #                             user='gb_bkhv',
