@@ -6,11 +6,10 @@ from pymessenger.bot import Bot
 
 import pymysql.cursors
 
-connection = pymysql.connect(host='mysql100.1gb.ru',user='gb_bkhv',password='957c3877sg',db='gb_bkhv',charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
-    
 app = Flask(__name__)
 #ACCESS_TOKEN = 'EAAB0TQP6ZCigBAKnnkRGoqbpDRPiXvj6WfkkpzRqH6zm8SMqZBYML74foLtH7TXRCZAYq5WeBYR1Q2eLnPuUUeagf1e1ZBa7pEewwwfTleQAatZCnSC1TQ9g7IYIwuIlZBs5MBdYNhpzHfhuQtY04TqIXS58zAOkYqqj4RznGjKwZDZD'
 #VERIFY_TOKEN = 'TESTINGTOKEN'
+connection = pymysql.connect(host='mysql100.1gb.ru',user='gb_bkhv',password='957c3877sg',db='gb_bkhv',charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 bot = Bot(ACCESS_TOKEN)
@@ -55,7 +54,7 @@ def get_message():
     
     try:
         with connection.cursor() as cursor:
-            sql = "INSERT INTO `test` (`test`) VALUES (%s)"
+            sql = "INSERT INTO 'test' ('test') VALUES (%s)"
             cursor.execute(sql, ('w'))
         connection.commit()
         
@@ -67,8 +66,9 @@ def send_message(recipient_id, response):
     #sends user the text message provided via input response parameter
     bot.send_text_message(recipient_id, response)
     return "success"
- 
+
+#connection.close()
 if __name__ == "__main__":
     app.run()
     
-connection.close()    
+    
