@@ -27,7 +27,7 @@ bot = Bot(ACCESS_TOKEN)
 
 
 try:
-    cur.execute("""create table bot_users (username varchar(42) not null)""")
+    cur.execute("""CREATE TABLE bot_users (uid integer PRIMARY KEY, name varchar(40))""")
         
         
 def receive_message():
