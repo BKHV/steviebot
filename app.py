@@ -4,14 +4,13 @@ import random
 from flask import Flask, request
 from pymessenger.bot import Bot
 
-from flask.ext.sqlalchemy import SQLAlchemy
+
+import psycopg2
+DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+print(conn)
 
 app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-db = SQLAlchemy(app)
-cur = db.cursor()
-cur.execute("CREATE TABLE test (id serial PRIMARY KEY, num integer, data varchar);")
 
 
 
