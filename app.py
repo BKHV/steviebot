@@ -18,7 +18,9 @@ bot = Bot(ACCESS_TOKEN)
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 cur = conn.cursor()     
-        
+cur.execute("INSERT INTO bot_users (username) VALUES ('AAA')")
+conn.commit()
+    
 def receive_message():
     if request.method == 'GET':
         """Before allowing people to message your bot, Facebook has implemented a verify token
@@ -55,8 +57,6 @@ def verify_fb_token(token_sent):
 def get_message():
     sample_responses = ["Ахренеть!!", "Работает!", "Ничесе!!", "Воу воу воу полегче!"]
     # return selected item to the user
-    cur.execute("INSERT INTO bot_users (username) VALUES ('AAA')")
-    #conn.commit()
     return random.choice(sample_responses)
  
 #uses PyMessenger to send response to user
