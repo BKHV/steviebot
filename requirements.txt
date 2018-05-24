@@ -4,3 +4,5 @@ gunicorn==19.6.0
 pymysql==0.8.1
 flask-sqlalchemy==2.3.1
 psycopg2==2.7
+urllib.parse==21.8
+os==16.1
