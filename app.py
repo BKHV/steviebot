@@ -13,8 +13,6 @@ cur = conn.cursor()
 app = Flask(__name__)
 
 
-
-
 #ACCESS_TOKEN = 'EAAB0TQP6ZCigBAKnnkRGoqbpDRPiXvj6WfkkpzRqH6zm8SMqZBYML74foLtH7TXRCZAYq5WeBYR1Q2eLnPuUUeagf1e1ZBa7pEewwwfTleQAatZCnSC1TQ9g7IYIwuIlZBs5MBdYNhpzHfhuQtY04TqIXS58zAOkYqqj4RznGjKwZDZD'
 #VERIFY_TOKEN = 'TESTINGTOKEN'
 
@@ -24,11 +22,7 @@ bot = Bot(ACCESS_TOKEN)
  
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
-
-
-try:
-    cur.execute("""CREATE TABLE bot_users (uid integer PRIMARY KEY, name varchar(40))""")
-        
+     
         
 def receive_message():
     if request.method == 'GET':
