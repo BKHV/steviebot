@@ -9,6 +9,7 @@ import psycopg2
 DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 cur = conn.cursor()
+cur.execute("INSERT INTO bot_users (username) VALUES ('AAA')")
 
 app = Flask(__name__)
 
