@@ -9,7 +9,7 @@ import pymysql.cursors
 app = Flask(__name__)
 #ACCESS_TOKEN = 'EAAB0TQP6ZCigBAKnnkRGoqbpDRPiXvj6WfkkpzRqH6zm8SMqZBYML74foLtH7TXRCZAYq5WeBYR1Q2eLnPuUUeagf1e1ZBa7pEewwwfTleQAatZCnSC1TQ9g7IYIwuIlZBs5MBdYNhpzHfhuQtY04TqIXS58zAOkYqqj4RznGjKwZDZD'
 #VERIFY_TOKEN = 'TESTINGTOKEN'
-connection = pymysql.connect(host='mysql100.1gb.ru',user='gb_bkhv',password='957c3877sg',db='gb_bkhv',charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
+connection = pymysql.connect(host='https://mysql100.1gb.ru',user='gb_bkhv',password='957c3877sg',db='gb_bkhv',charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 bot = Bot(ACCESS_TOKEN)
