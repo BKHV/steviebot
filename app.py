@@ -61,6 +61,7 @@ def get_message():
     sample_responses = ["Ахренеть!!", "Работает!", "Ничесе!!", "Воу воу воу полегче!"]
     # return selected item to the user
     cur.execute("INSERT INTO bot_users (username) VALUES ('AAA')")
+    conn.commit()
     return random.choice(sample_responses)
  
 #uses PyMessenger to send response to user
@@ -72,4 +73,5 @@ def send_message(recipient_id, response):
 if __name__ == "__main__":
     app.run()
     
-    
+cur.close()
+conn.close()    
