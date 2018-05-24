@@ -12,7 +12,6 @@ cur = conn.cursor()
 
 app = Flask(__name__)
 
-
 #ACCESS_TOKEN = 'EAAB0TQP6ZCigBAKnnkRGoqbpDRPiXvj6WfkkpzRqH6zm8SMqZBYML74foLtH7TXRCZAYq5WeBYR1Q2eLnPuUUeagf1e1ZBa7pEewwwfTleQAatZCnSC1TQ9g7IYIwuIlZBs5MBdYNhpzHfhuQtY04TqIXS58zAOkYqqj4RznGjKwZDZD'
 #VERIFY_TOKEN = 'TESTINGTOKEN'
 
@@ -61,7 +60,7 @@ def get_message():
     sample_responses = ["Ахренеть!!", "Работает!", "Ничесе!!", "Воу воу воу полегче!"]
     # return selected item to the user
     cur.execute("INSERT INTO bot_users (username) VALUES ('AAA')")
-    conn.commit()
+    #conn.commit()
     return random.choice(sample_responses)
  
 #uses PyMessenger to send response to user
@@ -73,5 +72,5 @@ def send_message(recipient_id, response):
 if __name__ == "__main__":
     app.run()
     
-cur.close()
-conn.close()    
+#cur.close()
+#conn.close()    
