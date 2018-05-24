@@ -3,25 +3,21 @@ import os
 import random
 from flask import Flask, request
 from pymessenger.bot import Bot
-
-
 import psycopg2
-DATABASE_URL = os.environ['DATABASE_URL']
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-cur = conn.cursor()
+
 
 app = Flask(__name__)
-
-#ACCESS_TOKEN = 'EAAB0TQP6ZCigBAKnnkRGoqbpDRPiXvj6WfkkpzRqH6zm8SMqZBYML74foLtH7TXRCZAYq5WeBYR1Q2eLnPuUUeagf1e1ZBa7pEewwwfTleQAatZCnSC1TQ9g7IYIwuIlZBs5MBdYNhpzHfhuQtY04TqIXS58zAOkYqqj4RznGjKwZDZD'
-#VERIFY_TOKEN = 'TESTINGTOKEN'
-
+DATABASE_URL = os.environ['DATABASE_URL']
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 bot = Bot(ACCESS_TOKEN)
  
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
-     
+
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+cur = conn.cursor()     
         
 def receive_message():
     if request.method == 'GET':
