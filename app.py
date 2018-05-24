@@ -51,15 +51,6 @@ def verify_fb_token(token_sent):
 #chooses a random message to send to the user
 def get_message():
     sample_responses = ["Ахренеть!!", "Работает!", "Ничесе!!", "Воу воу воу полегче!"]
-    connection = pymysql.connect(host='mysql100.1gb.ru',user='gb_bkhv',password='957c3877sg',db='gb_bkhv',charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
-    try:
-        with connection.cursor() as cursor:
-            sql = "INSERT INTO 'test' ('test') VALUES (%s)"
-            cursor.execute(sql, ('w'))
-        connection.commit()
-    except:
-        pass
-    
     # return selected item to the user
     return random.choice(sample_responses)
  
@@ -69,7 +60,6 @@ def send_message(recipient_id, response):
     bot.send_text_message(recipient_id, response)
     return "success"
 
-#connection.close()
 if __name__ == "__main__":
     app.run()
     
