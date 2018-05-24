@@ -4,6 +4,24 @@ import random
 from flask import Flask, request
 from pymessenger.bot import Bot
  
+    
+#!/usr/bin/python
+import MySQLdb
+db = MySQLdb.connect(host="mysql100.1gb.ru",    # your host, usually localhost
+                         user="gb_bkhv",         # your username
+                         passwd="957c3877sg",  # your password
+                         db="gb_bkhv")        # name of the data base
+# you must create a Cursor object. It will let
+#  you execute all the queries you need
+cur = db.cursor()
+# Use all the SQL you like
+cur.execute("select * from test")
+# print all the first cell of all the rows
+for row in cur.fetchall():
+    print row[0]
+db.close()    
+    
+    
 app = Flask(__name__)
 #ACCESS_TOKEN = 'EAAB0TQP6ZCigBAKnnkRGoqbpDRPiXvj6WfkkpzRqH6zm8SMqZBYML74foLtH7TXRCZAYq5WeBYR1Q2eLnPuUUeagf1e1ZBa7pEewwwfTleQAatZCnSC1TQ9g7IYIwuIlZBs5MBdYNhpzHfhuQtY04TqIXS58zAOkYqqj4RznGjKwZDZD'
 #VERIFY_TOKEN = 'TESTINGTOKEN'
