@@ -7,15 +7,6 @@ from pymessenger.bot import Bot
 import pymysql.cursors
 
 connection = pymysql.connect(host='mysql100.1gb.ru',user='gb_bkhv',password='957c3877sg',db='gb_bkhv',charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
-
-try:
-    with connection.cursor() as cursor:
-        sql = "INSERT INTO `test` (`test`) VALUES (%s)"
-        cursor.execute(sql, ('w'))
-    connection.commit()
-finally:
-    connection.close()
-
     
 app = Flask(__name__)
 #ACCESS_TOKEN = 'EAAB0TQP6ZCigBAKnnkRGoqbpDRPiXvj6WfkkpzRqH6zm8SMqZBYML74foLtH7TXRCZAYq5WeBYR1Q2eLnPuUUeagf1e1ZBa7pEewwwfTleQAatZCnSC1TQ9g7IYIwuIlZBs5MBdYNhpzHfhuQtY04TqIXS58zAOkYqqj4RznGjKwZDZD'
@@ -61,6 +52,13 @@ def verify_fb_token(token_sent):
 #chooses a random message to send to the user
 def get_message():
     sample_responses = ["Ахренеть!!", "Работает!", "Ничесе!!", "Воу воу воу полегче!"]
+    
+    try:
+        with connection.cursor() as cursor:
+            sql = "INSERT INTO `test` (`test`) VALUES (%s)"
+            cursor.execute(sql, ('w'))
+        connection.commit()
+        
     # return selected item to the user
     return random.choice(sample_responses)
  
@@ -72,3 +70,5 @@ def send_message(recipient_id, response):
  
 if __name__ == "__main__":
     app.run()
+    
+connection.close()    
