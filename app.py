@@ -6,12 +6,12 @@ from pymessenger.bot import Bot
 
 import pymysql.cursors
 
-#connection = pymysql.connect(host='mysql100.1gb.ru',
-#                             user='gb_bkhv',
-#                             password='957c3877sg',
-#                             db='gb_bkhv',
-#                             charset='utf8mb4',
-#                             cursorclass=pymysql.cursors.DictCursor)
+connection = pymysql.connect(host='mysql100.1gb.ru',
+                             user='gb_bkhv',
+                             password='957c3877sg',
+                             db='gb_bkhv',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
 
 #try:
 #    with connection.cursor() as cursor:
@@ -19,7 +19,7 @@ import pymysql.cursors
 #        cursor.execute(sql, ('w'))
 #    connection.commit()
 #finally:
-#    connection.close()
+    connection.close()
 
     
 app = Flask(__name__)
