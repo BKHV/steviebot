@@ -57,7 +57,9 @@ def get_message():
             sql = "INSERT INTO 'test' ('test') VALUES (%s)"
             cursor.execute(sql, ('w'))
         connection.commit()
-        
+    except:
+        pass
+    
     # return selected item to the user
     return random.choice(sample_responses)
  
