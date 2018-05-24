@@ -8,7 +8,7 @@ from pymessenger.bot import Bot
 import psycopg2
 DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-print(conn)
+cur = conn.cursor()
 
 app = Flask(__name__)
 
@@ -24,6 +24,12 @@ bot = Bot(ACCESS_TOKEN)
  
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
+
+
+try:
+    cur.execute("""create table bot_users (username varchar(42) not null)""")
+        
+        
 def receive_message():
     if request.method == 'GET':
         """Before allowing people to message your bot, Facebook has implemented a verify token
