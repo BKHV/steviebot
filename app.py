@@ -32,6 +32,12 @@ def receive_message():
             if message.get('message'):
                 #Facebook Messenger ID for user so we know where to send response back to
                 recipient_id = message['sender']['id']
+                
+                conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+                cur = conn.cursor()
+                cur.execute("INSERT INTO bot_users VALUES (2)")
+                conn.commit()
+    
                 if message['message'].get('text'):
                     response_sent_text = get_message()
                     send_message(recipient_id, response_sent_text)
@@ -42,14 +48,6 @@ def receive_message():
     return "Message Processed"
  
 def verify_fb_token(token_sent):
-    
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cur = conn.cursor()
-    cur.execute("INSERT INTO bot_users VALUES (1)")
-    conn.commit()
-    #one = cur.fetchone()
-    #all = cur.fetchall()
-
     #take token sent by facebook and verify it matches the verify token you sent
     #if they match, allow the request, else return an error 
     if token_sent == VERIFY_TOKEN:
