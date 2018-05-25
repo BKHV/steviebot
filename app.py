@@ -16,10 +16,10 @@ bot = Bot(ACCESS_TOKEN)
 @app.route("/", methods=['GET', 'POST'])
 
 
-#conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-#cur = conn.cursor()     
-#cur.execute("INSERT INTO bot_users (username) VALUES ('AAA')")
-#conn.commit()
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+cur = conn.cursor()     
+cur.execute("INSERT INTO bot_users (username) VALUES ('AAA')")
+conn.commit()
     
 def receive_message():
     if request.method == 'GET':
