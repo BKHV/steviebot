@@ -34,19 +34,18 @@ def receive_message():
                 recipient_id = message['sender']['id']
                 message_text = message['message']['text']
                 
-                conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-                cur = conn.cursor()
+                #conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+                #cur = conn.cursor()
                 #cur.execute("INSERT INTO bot_users VALUES ("+recipient_id+","+recipient_id+",["+response_sent_text+"])")
-                cur.execute("INSERT INTO bot_users VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
-                conn.commit()
+                #cur.execute("INSERT INTO bot_users VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
+                #conn.commit()
                     
                 if message['message'].get('text'):
                     response_sent_text = get_message()
                     send_message(recipient_id, response_sent_text)
                     
-                    #conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+                    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
                     cur = conn.cursor()
-                    #cur.execute("INSERT INTO bot_users VALUES ("+recipient_id+","+recipient_id+",["+response_sent_text+"])")
                     cur.execute("INSERT INTO bot_users VALUES (%s, %s, %s)", ("Stevie", recipient_id,""+response_sent_text+""))
                     conn.commit()
                 
