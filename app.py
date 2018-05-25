@@ -39,16 +39,14 @@ def receive_message():
                     
                     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
                     cur = conn.cursor()
-                    cur.execute("INSERT INTO bot_users VALUES ("+recipient_id+","+recipient_id+","+response_sent_text+")")
+                    cur.execute("INSERT INTO bot_users VALUES ("+recipient_id+")")
                     conn.commit()
                 
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
                     send_message(recipient_id, response_sent_nontext)
-                    
-                
-        
+                                            
     return "Message Processed"
  
 def verify_fb_token(token_sent):
