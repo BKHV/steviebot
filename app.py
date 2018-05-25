@@ -15,16 +15,6 @@ bot = Bot(ACCESS_TOKEN)
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 
-
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-#cur = conn.cursor()     
-#cur.execute("INSERT INTO bot_users (username) VALUES ('AAA')")
-#conn.commit()
-    
-cur = conn.cursor()
-cur.execute('SELECT * FROM bot_users')
-one = cur.fetchone()
-all = cur.fetchall()
     
 def receive_message():
     if request.method == 'GET':
@@ -52,6 +42,17 @@ def receive_message():
     return "Message Processed"
  
 def verify_fb_token(token_sent):
+    
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    #cur = conn.cursor()     
+    #cur.execute("INSERT INTO bot_users (username) VALUES ('AAA')")
+    #conn.commit()
+    
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM bot_users')
+    one = cur.fetchone()
+    #all = cur.fetchall()
+
     #take token sent by facebook and verify it matches the verify token you sent
     #if they match, allow the request, else return an error 
     if token_sent == VERIFY_TOKEN:
