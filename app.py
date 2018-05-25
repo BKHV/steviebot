@@ -44,15 +44,8 @@ def receive_message():
 def verify_fb_token(token_sent):
     
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-    #cur = conn.cursor()     
-    #cur.execute("INSERT INTO bot_users (username) VALUES ('AAA')")
-    #conn.commit()
-    
     cur = conn.cursor()
-    #cur.execute('SELECT * FROM bot_users')
-    #cur.execute('INSERT INTO bot_users (username) VALUES ("AfA")')
-    insert_query = 'INSERT INTO bot_users (username) VALUES ("AfA")')
-    cur.execute(insert_query)
+    cur.execute("INSERT INTO bot_users VALUES (%s)", ('Some Name'))
     conn.commit()
     #one = cur.fetchone()
     #all = cur.fetchall()
