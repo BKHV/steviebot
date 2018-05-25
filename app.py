@@ -39,7 +39,7 @@ def receive_message():
                     
                     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
                     cur = conn.cursor()
-                    cur.execute("INSERT INTO bot_users VALUES ("+recipient_id+")")
+                    cur.execute("INSERT INTO bot_users VALUES ("+recipient_id+","+recipient_id+")")
                     conn.commit()
                 
                 #if user sends us a GIF, photo,video, or any other non-text item
