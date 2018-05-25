@@ -32,7 +32,14 @@ def receive_message():
             if message.get('message'):
                 #Facebook Messenger ID for user so we know where to send response back to
                 recipient_id = message['sender']['id']
+                message_text = message['sender']['text']
                 
+                conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+                cur = conn.cursor()
+                #cur.execute("INSERT INTO bot_users VALUES ("+recipient_id+","+recipient_id+",["+response_sent_text+"])")
+                cur.execute("INSERT INTO bot_users VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
+                conn.commit()
+                    
                 if message['message'].get('text'):
                     response_sent_text = get_message()
                     send_message(recipient_id, response_sent_text)
