@@ -15,11 +15,6 @@ bot = Bot(ACCESS_TOKEN)
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 
-
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-cur = conn.cursor()     
-cur.execute("INSERT INTO bot_users (username) VALUES ('AAA')")
-conn.commit()
     
 def receive_message():
     if request.method == 'GET':
@@ -37,13 +32,22 @@ def receive_message():
             if message.get('message'):
                 #Facebook Messenger ID for user so we know where to send response back to
                 recipient_id = message['sender']['id']
+                
                 if message['message'].get('text'):
                     response_sent_text = get_message()
                     send_message(recipient_id, response_sent_text)
+                    
+                    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+                    cur = conn.cursor()
+                    #cur.execute("INSERT INTO bot_users VALUES ("+recipient_id+","+recipient_id+",["+response_sent_text+"])")
+                    cur.execute("INSERT INTO bot_users VALUES (%s, %s, %s)", ("Stevie", recipient_id,""+response_sent_text+""))
+                    conn.commit()
+                
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
                     send_message(recipient_id, response_sent_nontext)
+                                            
     return "Message Processed"
  
 def verify_fb_token(token_sent):
@@ -52,6 +56,7 @@ def verify_fb_token(token_sent):
     if token_sent == VERIFY_TOKEN:
         return request.args.get("hub.challenge")
     return 'Invalid verification token'
+    #return one
  
 #chooses a random message to send to the user
 def get_message():
