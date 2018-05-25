@@ -50,7 +50,10 @@ def verify_fb_token(token_sent):
     
     cur = conn.cursor()
     #cur.execute('SELECT * FROM bot_users')
-    cur.execute('INSERT INTO bot_users (username) VALUES ("AfA")')
+    #cur.execute('INSERT INTO bot_users (username) VALUES ("AfA")')
+    insert_query = 'INSERT INTO bot_users (username) VALUES ("AfA")')
+    cur.execute(insert_query)
+    conn.commit()
     #one = cur.fetchone()
     #all = cur.fetchall()
 
