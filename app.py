@@ -16,10 +16,15 @@ bot = Bot(ACCESS_TOKEN)
 @app.route("/", methods=['GET', 'POST'])
 
 
-#conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 #cur = conn.cursor()     
 #cur.execute("INSERT INTO bot_users (username) VALUES ('AAA')")
 #conn.commit()
+    
+cur = conn.cursor()
+cur.execute('SELECT * FROM bot_users')
+one = cur.fetchone()
+all = cur.fetchall()
     
 def receive_message():
     if request.method == 'GET':
@@ -51,7 +56,8 @@ def verify_fb_token(token_sent):
     #if they match, allow the request, else return an error 
     if token_sent == VERIFY_TOKEN:
         return request.args.get("hub.challenge")
-    return 'Invalid verification token'
+    #return 'Invalid verification token'
+    return one
  
 #chooses a random message to send to the user
 def get_message():
