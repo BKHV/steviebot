@@ -46,7 +46,7 @@ def verify_fb_token(token_sent):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
     cur.execute("INSERT INTO bot_users VALUES (%s)", ('Some Name'))
-    conn.commit()
+    #conn.commit()
     #one = cur.fetchone()
     #all = cur.fetchall()
 
