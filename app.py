@@ -45,7 +45,7 @@ def receive_message():
                 
                 try:
                     cur = conn.cursor()
-                    cur.execute("INSERT INTO user_features VALUES (%s, %s, %s)", (recipient_id,"Stevie","Bobby"), " ON CONFLICT IGNORE")
+                    cur.execute("INSERT INTO user_features VALUES (%s, %s, %s)", (recipient_id,"Stevie","Bobby"), " ON CONFLICT (uid) DO NOTHING ")
                     conn.commit()
                 except:
                     pass
