@@ -36,7 +36,7 @@ def receive_message():
                 
                 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
                 cur = conn.cursor()
-                cur.execute("INSERT INTO bot_users VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
+                cur.execute("INSERT INTO user_features VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
                 #conn.commit()
                 
                 #cur = conn.cursor()
