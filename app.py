@@ -45,8 +45,7 @@ def receive_message():
                 try:
                     cur = conn.cursor()
                     try:
-                        cur.execute( """INSERT INTO items (name, description) 
-                        VALUES (%s, %s)  RETURNING id""", (item[0], item[1]))
+                        cur.execute("INSERT INTO user_features VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
                     except psycopg2.IntegrityError:
                             conn.rollback()
                     else:
