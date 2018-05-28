@@ -44,13 +44,8 @@ def receive_message():
                 #conn.commit()
                 try:
                     cur = conn.cursor()
-                    try:
-                        cur.execute("INSERT INTO user_features VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
-                    except psycopg2.IntegrityError:
-                            conn.rollback()
-                    else:
-                        conn.commit()
-                    cur.close()
+                    cur.execute("INSERT INTO user_features VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
+                    conn.commit()
                 except pass
                     
                 if message['message'].get('text'):
