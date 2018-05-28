@@ -4,7 +4,7 @@ import random
 from flask import Flask, request
 from pymessenger.bot import Bot
 import psycopg2
-from time import gmtime, strftime
+import datetime
 
 
 app = Flask(__name__)
@@ -39,7 +39,7 @@ def receive_message():
                 
                 try:
                     cur = conn.cursor()
-                    cur.execute("INSERT INTO chat_log VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+"",strftime("%Y-%m-%d %H:%M:%S", gmtime())))
+                    cur.execute("INSERT INTO chat_log VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+"",datetime.datetime.now()))
                     conn.commit()
                 except:
                     pass
@@ -56,7 +56,7 @@ def receive_message():
                     send_message(recipient_id, response_sent_text)
                     
                     cur = conn.cursor()
-                    cur.execute("INSERT INTO chat_log VALUES (%s, %s, %s)", ("Stevie", recipient_id,""+response_sent_text+"",strftime("%Y-%m-%d %H:%M:%S", gmtime())))
+                    cur.execute("INSERT INTO chat_log VALUES (%s, %s, %s)", ("Stevie", recipient_id,""+response_sent_text+"",datetime.datetime.now()))
                     conn.commit()
                 
                 #if user sends us a GIF, photo,video, or any other non-text item
