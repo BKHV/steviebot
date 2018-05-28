@@ -75,7 +75,7 @@ def verify_fb_token(token_sent):
 #chooses a random message to send to the user
 def get_message(message_text,conn):
     greetings = ['Привет', 'привет', 'Здарово', 'здарово']
-    question = ['Что идет в кино?','Что в кино?','Что посмотреть?','Давай']
+    question = ['Что идет в кино?','Что идёт в кино?','Что в кино?','Что посмотреть?','Давай']
     if message_text in greetings: 
         responses = ['Привет!','Салют!','Сто лет тебя не видел)']
         response = random.choice(responses)
