@@ -80,7 +80,7 @@ def get_message(message_text,conn):
         row = cur.fetchone()
         response ="Иди посмотри "+row[1]+" "+row[2]
     else:
-        response = random.choice(["Ахренеть!!", "Работает!", "Ничесе!!", "Воу воу воу полегче!", "Иди, посмотри Авенджеров https://youtu.be/QwievZ1Tx-8"])
+        response = random.choice(["Ахренеть!!", "Работает!", "Ничесе!!", "Воу воу воу полегче!"])
     return response
  
 #uses PyMessenger to send response to user
