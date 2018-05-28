@@ -35,13 +35,24 @@ def receive_message():
                 message_text = message['message']['text']
                 
                 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-                cur = conn.cursor()
-                cur.execute("INSERT INTO user_features VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
+                #cur = conn.cursor()
+                #cur.execute("INSERT INTO user_features VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
                 #conn.commit()
                 
                 #cur = conn.cursor()
                 #cur.execute("INSERT INTO user_features VALUES (%s,%s,%s)", (recipient_id,recipient_id,recipient_id))
-                conn.commit()
+                #conn.commit()
+                try:
+                    cur = conn.cursor()
+                    try:
+                        cur.execute( """INSERT INTO items (name, description) 
+                        VALUES (%s, %s)  RETURNING id""", (item[0], item[1]))
+                    except psycopg2.IntegrityError:
+                            conn.rollback()
+                    else:
+                        conn.commit()
+                    cur.close()
+                except pass
                     
                 if message['message'].get('text'):
                     response_sent_text = get_message()
