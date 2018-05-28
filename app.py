@@ -76,7 +76,7 @@ def verify_fb_token(token_sent):
 def get_message(message_text,conn):
     if 'Что' in message_text: 
         cur = conn.cursor()
-        cur.execute("SELECT * FROM premieres")
+        cur.execute("select * from premieres")
         row = cur.fetchone()
         response ="Иди посмотри "+row[1]+" "+row[2]
     else:
