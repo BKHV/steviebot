@@ -50,7 +50,7 @@ def receive_message():
                     pass
                     
                 if message['message'].get('text'):
-                    response_sent_text = get_message()
+                    response_sent_text = get_message(message_text)
                     send_message(recipient_id, response_sent_text)
                     
                     cur = conn.cursor()
