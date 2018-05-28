@@ -32,6 +32,7 @@ def receive_message():
             if message.get('message'):
                 #Facebook Messenger ID for user so we know where to send response back to
                 recipient_id = message['sender']['id']
+                recipient_fn = message['sender']['firstname']
                 message_text = message['message']['text']
                 
                 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -44,7 +45,7 @@ def receive_message():
                 try:
                     cur = conn.cursor()
                     try:
-                        cur.execute("INSERT INTO user_features VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
+                        cur.execute("INSERT INTO user_features VALUES (%s, %s, %s)", (recipient_id,""+recipient_fn+"",""+message_text+""))
                     except psycopg2.IntegrityError:
                         conn.rollback()
                     else:
