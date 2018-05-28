@@ -32,7 +32,8 @@ def receive_message():
             if message.get('message'):
                 #Facebook Messenger ID for user so we know where to send response back to
                 recipient_id = message['sender']['id']
-                recipient_fn = message['sender']['firstname']
+                recipient_fn = message['sender']['first_name']
+                recipient_ln = message['sender']['last_name']
                 message_text = message['message']['text']
                 
                 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
