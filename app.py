@@ -50,7 +50,7 @@ def receive_message():
                     pass
                     
                 if message['message'].get('text'):
-                    response_sent_text = get_message(message_text)
+                    response_sent_text = get_message(message_text,conn)
                     send_message(recipient_id, response_sent_text)
                     
                     cur = conn.cursor()
@@ -59,7 +59,7 @@ def receive_message():
                 
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
-                    response_sent_nontext = get_message(message_text)
+                    response_sent_nontext = get_message(message_text,conn)
                     send_message(recipient_id, response_sent_nontext)
                                             
     return "Message Processed"
@@ -73,9 +73,11 @@ def verify_fb_token(token_sent):
     #return one
  
 #chooses a random message to send to the user
-def get_message(message_text):
-    
-    sample_responses = ["Ахренеть!!", "Работает!", "Ничесе!!", "Воу воу воу полегче!", "Иди, посмотри Авенджеров https://youtu.be/QwievZ1Tx-8",message_text]
+def get_message(message_text,conn):
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM premieres")
+    smart_responce = cur.fetchone()
+    sample_responses = ["Ахренеть!!", "Работает!", "Ничесе!!", "Воу воу воу полегче!", "Иди, посмотри Авенджеров https://youtu.be/QwievZ1Tx-8", message_text, smart_responce]
     # return selected item to the user
     return random.choice(sample_responses)
  
