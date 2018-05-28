@@ -77,7 +77,7 @@ def get_message(message_text,conn):
     cur = conn.cursor()
     cur.execute("SELECT * FROM premieres")
     smart_responce = cur.fetchone()
-    sample_responses = ["Ахренеть!!", "Работает!", "Ничесе!!", "Воу воу воу полегче!", "Иди, посмотри Авенджеров https://youtu.be/QwievZ1Tx-8", message_text, smart_responce]
+    sample_responses = ["Ахренеть!!", "Работает!", "Ничесе!!", "Воу воу воу полегче!", "Иди, посмотри Авенджеров https://youtu.be/QwievZ1Tx-8", message_text, "as"+smart_responce+""]
     # return selected item to the user
     return random.choice(sample_responses)
  
