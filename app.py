@@ -74,12 +74,14 @@ def verify_fb_token(token_sent):
  
 #chooses a random message to send to the user
 def get_message(message_text,conn):
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM premieres")
-    smart_responce = cur.fetchone()
-    sample_responses = ["Ахренеть!!", "Работает!", "Ничесе!!", "Воу воу воу полегче!", "Иди, посмотри Авенджеров https://youtu.be/QwievZ1Tx-8", "Иди посмотри "+smart_responce[1]+" "+smart_responce[2]]
-    # return selected item to the user
-    return random.choice(sample_responses)
+    if 'Что' in message_text: 
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM premieres")
+        row = cur.fetchone()
+        response ="Иди посмотри "+row[1]+" "+row[2]
+    else:
+        response = random.choice(["Ахренеть!!", "Работает!", "Ничесе!!", "Воу воу воу полегче!", "Иди, посмотри Авенджеров https://youtu.be/QwievZ1Tx-8"])
+    return response
  
 #uses PyMessenger to send response to user
 def send_message(recipient_id, response):
