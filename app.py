@@ -40,19 +40,9 @@ def receive_message():
                     #conn.commit()
                 #except:
                     #pass
-                try:
-                    cur = conn.cursor()
-                    cur.execute("INSERT INTO user_features VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
-                    conn.commit()
-                except:
-                    pass
-                
-                try:
-                    cur = conn.cursor()
-                    cur.execute("INSERT INTO bot_users VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
-                    conn.commit()
-                except:
-                    pass
+                cur = conn.cursor()
+                cur.execute("INSERT INTO bot_users VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+response_sent_text+""))
+                conn.commit()
                     
                 if message['message'].get('text'):
                     response_sent_text = get_message()
