@@ -44,9 +44,6 @@ def receive_message():
                     cur = conn.cursor()
                     try:
                         cur.execute("INSERT INTO user_features VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
-                    except psycopg2.IntegrityError:
-                        conn.rollback()
-                    else:
                         conn.commit()
                     cur.close()
                 except:
@@ -56,9 +53,6 @@ def receive_message():
                     cur = conn.cursor()
                     try:
                         cur.execute("INSERT INTO bot_users VALUES (%s, %s, %s)", (recipient_id,"Stevie",""+message_text+""))
-                    except psycopg2.IntegrityError:
-                        conn.rollback()
-                    else:
                         conn.commit()
                     cur.close()
                 except:
