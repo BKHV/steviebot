@@ -77,7 +77,7 @@ def get_message(message_text,conn):
     greetings = ['Привет', 'привет', 'Здарово', 'здарово']
     question = ['Что идет в кино?','Что в кино?','Что посмотреть?']
     if message_text in greetings: 
-        responses = ['Привет!','Салют!','Бонжороно!']
+        responses = ['Привет!','Салют!','Сто лет тебя не видел)']
         response = random.choice(responses)
     elif message_text in question:
         cur = conn.cursor()
